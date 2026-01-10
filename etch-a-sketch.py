@@ -27,17 +27,25 @@ def click_pen():
         arrow.pendown()
         pen = True
 
+def change_color():
+    color = s.textinput("What color do you want?", "Color:")
+    if color in colors:
+        arrow.color(color)
+
+def close_program():
+    s.bye()
+
 
 
 s = Screen()
+change_color()
 s.setup(700, 700)
 s.listen()
-turtle_color = s.textinput("What color do you want?", "Color:")
-if turtle_color in colors:
-    arrow.color(turtle_color)
-s.onkey(mv_forward, "Up")
-s.onkey(mv_backward, "Down")
-s.onkey(turn_left, "Left")
-s.onkey(turn_right, "Right")
-s.onkey(click_pen, "space")
-s.exitonclick()
+s.onkey(close_program, "q")
+s.onkey(fun=change_color, key="c")
+s.onkey(fun=mv_forward, key="Up")
+s.onkey(fun=mv_backward, key="Down")
+s.onkey(fun=turn_left, key="Left")
+s.onkey(fun=turn_right, key="Right")
+s.onkey(fun=click_pen, key="space")
+s.mainloop()
